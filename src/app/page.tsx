@@ -55,9 +55,12 @@ export default function Home() {
   };
 
   return (
-    <main className='flex flex-col items-center justify-between p-24  min-h-screen'>
-      <form className='text-center grid gap-5' onSubmit={formSubmitHandler}>
-        <div>
+    <main className='flex items-center justify-center text-xs sm:text-sm md:text-md lg:text-lg'>
+      <form
+        className='flex flex-col  justify-center p-4 min-h-screen max-w-screen-md text-center gap-5'
+        onSubmit={formSubmitHandler}
+      >
+        <div className='grid gap-2'>
           <Label htmlFor='config_file'>Config File</Label>
           <Input
             type='file'
@@ -67,7 +70,7 @@ export default function Home() {
           />
         </div>
 
-        <div>
+        <div className='grid gap-2'>
           <Label htmlFor='server_status'>Server Status</Label>
           <Textarea
             className='placeholder:grayscale placeholder:opacity-40'
