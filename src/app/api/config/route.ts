@@ -3,6 +3,9 @@ import { Configs } from "@/types/configs";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
+  if (process.env.NODE_ENV !== "development")
+    return NextResponse.json({ status: 200 });
+
   const client = await clientPromise;
   const db = client.db("wireguard");
   const allConfigs = await db.collection("configs").find({}).toArray();
