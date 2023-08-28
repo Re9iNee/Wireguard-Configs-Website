@@ -28,7 +28,7 @@ export async function generateConfigFiles({
     const newSV = sv.toString().replace(/S0(\d)/i, "S$1");
 
     const newConfigText = inputConfig.replace(/= s\d+/i, `= ${newSV}`);
-    // TODO: await Deno.writeTextFile(`./output/${sv}.conf`, newConfigText);
+
     zip.file(`${sv}.conf`, newConfigText);
     console.dir({ sv, newConfigText });
   }

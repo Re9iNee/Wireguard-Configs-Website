@@ -9,6 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { generateConfigFiles } from "@/lib/utils";
 import Link from "next/link";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { insertConfigToDB } from "./services/configs";
 
 export default function Home() {
   // TODO: useTransition?
@@ -50,6 +51,10 @@ export default function Home() {
 
   const formSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
+    insertConfigToDB({ file, server_status: serverStatus })
+      .then(console.log)
+      .catch(console.error);
 
     generateConfigFiles({ inputConfig: file, serverStatus });
   };
