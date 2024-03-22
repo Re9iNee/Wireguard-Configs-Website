@@ -16,18 +16,18 @@ export async function generateConfigFiles({
   serverStatus,
   inputConfig,
 }: generateConfigFiles) {
-  // selects "S08" in "[ S08 ] ( 🟠 ) [ PSD ]"
-  const serverNameRegex = /S\d+\w+/gi;
+  // selects "08" in "08 ( 🔥 ) SHT"
+  const serverNameRegex = /\d+/gi;
   const availableServers = serverStatus.matchAll(serverNameRegex);
 
   availableServers.next().value;
   const zip = new JSZip();
 
   for (let sv of availableServers) {
-    // Replace S08 with S8
-    const newSV = sv.toString().replace(/S0(\d)/i, "S$1");
+    // Replace 08 with S8
+    const newSV = sv.toString().replace(/0(\d)/i, "$1");
 
-    const newConfigText = inputConfig.replace(/= s\d+/i, `= ${newSV}`);
+    const newConfigText = inputConfig.replace(/= s\d+/i, `= s${newSV}`);
 
     zip.file(`${sv}.conf`, newConfigText);
     console.dir({ sv, newConfigText });

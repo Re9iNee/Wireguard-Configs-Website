@@ -1,6 +1,6 @@
 import clientPromise from "@/lib/mongodb";
 import { Configs } from "@/types/configs";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   if (process.env.NODE_ENV !== "development")
